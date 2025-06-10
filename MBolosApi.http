@@ -1,0 +1,6 @@
+@MBolosApi_HostAddress = http://localhost:5100
+
+GET {{MBolosApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
