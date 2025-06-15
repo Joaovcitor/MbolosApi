@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MbolosApi.Enums;
 
 namespace MBolosApi.Models
 {
@@ -26,9 +27,9 @@ namespace MBolosApi.Models
         public int QuantidadeEstoque { get; set; }
 
 
-        [StringLength(50)]
+
         [Column("tipo_produto")]
-        public string TipoProduto { get; set; } = "Padaria";
+        public TipoProduto TipoProduto { get; set; } = TipoProduto.BoloComum;
 
         [Column("data_validade", TypeName = "date")]
         public DateTime? DataValidade { get; set; }

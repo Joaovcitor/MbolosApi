@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MBolosApi.Models;
+using MBolosApi.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace MBolosApi.Context
@@ -14,5 +15,7 @@ namespace MBolosApi.Context
         }
 
         public DbSet<Produto> Produtos { get; set; }
+        public DbSet<Pedidos> Pedidos { get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
     }
 }

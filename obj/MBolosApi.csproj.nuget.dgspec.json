@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/joao-victor/Área de trabalho/projetos/MBolosApi/MBolosApi.csproj": {}
+    "/home/joao/Área de Trabalho/Trabalhos/Projetos/MbolosApi/MBolosApi.csproj": {}
   },
   "projects": {
-    "/home/joao-victor/Área de trabalho/projetos/MBolosApi/MBolosApi.csproj": {
+    "/home/joao/Área de Trabalho/Trabalhos/Projetos/MbolosApi/MBolosApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/joao-victor/Área de trabalho/projetos/MBolosApi/MBolosApi.csproj",
+        "projectUniqueName": "/home/joao/Área de Trabalho/Trabalhos/Projetos/MbolosApi/MBolosApi.csproj",
         "projectName": "MBolosApi",
-        "projectPath": "/home/joao-victor/Área de trabalho/projetos/MBolosApi/MBolosApi.csproj",
-        "packagesPath": "/home/joao-victor/.nuget/packages/",
-        "outputPath": "/home/joao-victor/Área de trabalho/projetos/MBolosApi/obj/",
+        "projectPath": "/home/joao/Área de Trabalho/Trabalhos/Projetos/MbolosApi/MBolosApi.csproj",
+        "packagesPath": "/home/joao/.nuget/packages/",
+        "outputPath": "/home/joao/Área de Trabalho/Trabalhos/Projetos/MbolosApi/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/joao-victor/.nuget/NuGet/NuGet.Config"
+          "/home/joao/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -90,7 +90,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.116/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.117/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
