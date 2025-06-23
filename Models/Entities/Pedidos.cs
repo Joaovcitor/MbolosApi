@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using MbolosApi.Enums;
 using MbolosApi.Models.Entities;
 
@@ -12,6 +13,7 @@ namespace MBolosApi.Models.Entities
         public int Id { get; set; }
         [Required]
         public int ClienteId { get; set; }
+        [JsonIgnore]
         public Cliente Cliente { get; set; }
         public List<ItemPedido> Itens { get; set; } = new();
         [Required]

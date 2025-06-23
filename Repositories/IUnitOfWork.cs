@@ -9,6 +9,7 @@ namespace MbolosApi.Repositories
     {
         IProdutoRepository ProdutoRepository { get; }
         IPedidosRepository PedidosRepository { get; }
+        IClienteRepository ClienteRepository { get; }
 
         void Commit();
     }

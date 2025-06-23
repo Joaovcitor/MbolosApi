@@ -27,6 +27,5 @@ namespace MBolosApi.DTOs.Mappings
             cliente.Email = updateClienteDTO.Email;
             cliente.SenhaHash = updateClienteDTO.SenhaHash;
         }
-
     }
 }

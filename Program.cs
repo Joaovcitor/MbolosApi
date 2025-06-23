@@ -1,8 +1,13 @@
 using System.Text.Json.Serialization;
+using MbolosApi.DTOs.Mappings;
+using MbolosApi.Interfaces;
 using MbolosApi.Repositories;
+using MbolosApi.Services;
 using MBolosApi.Context;
 using MBolosApi.Filters;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.JsonPatch;
+using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -20,10 +25,12 @@ builder.Services.AddControllers(options =>
 .AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-});
-builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
+}).AddNewtonsoftJson();
+// builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IPasswordService, PasswordService>();
+builder.Services.AddAutoMapper(typeof(ProdutoDTOMappingProfile));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

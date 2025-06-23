@@ -11,6 +11,7 @@ namespace MbolosApi.Repositories
         private IProdutoRepository? _produtoRepo;
 
         private IPedidosRepository? _pedidosRepo;
+        private IClienteRepository? _clienteRepo;
         public AppDbContext _context;
 
         public UnitOfWork(AppDbContext context)
@@ -27,6 +28,11 @@ namespace MbolosApi.Repositories
         public IPedidosRepository PedidosRepository
         {
             get { return _pedidosRepo = _pedidosRepo ?? new PedidoRepository(_context); }
+        }
+
+        public IClienteRepository ClienteRepository
+        {
+            get { return _clienteRepo = _clienteRepo ?? new ClienteRepository(_context); }
         }
 
         public void Commit()
