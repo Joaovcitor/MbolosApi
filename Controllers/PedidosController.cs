@@ -20,15 +20,15 @@ namespace MBolosApi.Controllers
         }
 
         [HttpGet(Name = "GetPedido")]
-        public ActionResult<IEnumerable<Pedidos>> Get()
+        public async Task<ActionResult<IEnumerable<Pedidos>>> Get()
         {
-            var pedidos = _uof.PedidosRepository.GetAll();
+            var pedidos = await _uof.PedidosRepository.GetAllAsync();
             return Ok(pedidos);
         }
         [HttpGet("{id:int}")]
-        public ActionResult<Pedidos> GetById(int id)
+        public async Task<ActionResult<Pedidos>> GetById(int id)
         {
-            var pedido = _uof.PedidosRepository.Get(p => p.Id == id);
+            var pedido = await _uof.PedidosRepository.GetAsync(p => p.Id == id);
             if (pedido == null)
             {
                 return NotFound("Não foi possível encontrar o pedido");
@@ -37,7 +37,7 @@ namespace MBolosApi.Controllers
         }
         [HttpPost]
 
-        public ActionResult<Pedidos> Post(Pedidos pedidos)
+        public async Task<ActionResult<Pedidos>> Post(Pedidos pedidos)
         {
             if (pedidos == null)
             {
@@ -45,7 +45,7 @@ namespace MBolosApi.Controllers
             }
 
             var pedido = _uof.PedidosRepository.Create(pedidos);
-            _uof.Commit();
+            await _uof.CommitAsync();
             return new CreatedAtRouteResult("GetPedido", new { id = pedidos.Id }, pedido);
         }
 

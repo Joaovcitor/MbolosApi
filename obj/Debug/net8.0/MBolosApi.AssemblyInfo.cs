@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MBolosApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9baef49123939d029f847121a4ee97cb8b14e980")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8ddab468c0af41c84d8307479ec228fc9c46a694")]
 [assembly: System.Reflection.AssemblyProductAttribute("MBolosApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MBolosApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

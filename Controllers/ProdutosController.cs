@@ -9,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using MbolosApi.DTOs.Produtos;
 using Microsoft.AspNetCore.JsonPatch;
+using MbolosApi.Pagination;
+using Newtonsoft.Json;
 
 namespace MBolosApi.Controllers
 {
@@ -25,17 +27,27 @@ namespace MBolosApi.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<ProdutoDTO>> GetAsync()
+        public async Task<ActionResult<IEnumerable<ProdutoDTO>>> GetAsync([FromQuery] ProdutosParameters produtosParameters)
         {
-            var produtos = _uof.ProdutoRepository.GetAll();
+            var produtos = await _uof.ProdutoRepository.GetProdutosAsync(produtosParameters);
+            var metaData = new
+            {
+                produtos.TotalCount,
+                produtos.PageSize,
+                produtos.CurrentPage,
+                produtos.TotalPages,
+                produtos.HasNext,
+                produtos.HasPrevious
+            };
+            Response.Headers.Append("X-Pagination", JsonConvert.SerializeObject(metaData));
             var produtosDto = _mapper.Map<IEnumerable<ProdutoDTO>>(produtos);
             return Ok(produtosDto);
         }
 
         [HttpGet("{id:int}", Name = "GetByIdAsync")]
-        public ActionResult<ProdutoDTO> GetByIdAsync(int id)
+        public async Task<ActionResult<ProdutoDTO>> GetByIdAsync(int id)
         {
-            var produto = _uof.ProdutoRepository.Get(p => p.Id == id);
+            var produto = await _uof.ProdutoRepository.GetAsync(p => p.Id == id);
             if (produto == null)
             {
                 return NotFound("Não foi possível encontrar o produto.");
@@ -46,21 +58,21 @@ namespace MBolosApi.Controllers
             return Ok(produtoDTO);
         }
         [HttpPost]
-        public ActionResult<ProdutoDTO> PostAsync(ProdutoDTO produtoDTO)
+        public async Task<ActionResult<ProdutoDTO>> PostAsync(ProdutoDTO produtoDTO)
         {
             var produto = _mapper.Map<Produto>(produtoDTO);
             var produtoCriado = _uof.ProdutoRepository.Create(produto);
-            _uof.Commit();
+            await _uof.CommitAsync();
             var novoProdutoDTO = _mapper.Map<ProdutoDTO>(produtoCriado);
             return new CreatedAtRouteResult("GetByIdAsync", new { id = novoProdutoDTO.Id }, novoProdutoDTO);
         }
 
         [HttpPatch("{id}/UpdatePartial")]
-        public ActionResult<ProdutoDTOUpdateResponse> Patch(int id, JsonPatchDocument<ProdutoDTOUpdateRequest> patchProdutoDto)
+        public async Task<ActionResult<ProdutoDTOUpdateResponse>> Patch(int id, JsonPatchDocument<ProdutoDTOUpdateRequest> patchProdutoDto)
         {
             if (patchProdutoDto is null || id <= 0) return BadRequest();
 
-            var produto = _uof.ProdutoRepository.Get(p => p.Id == id);
+            var produto = await _uof.ProdutoRepository.GetAsync(p => p.Id == id);
             if (produto == null) return NotFound();
             var produtoUpdateRequest = _mapper.Map<ProdutoDTOUpdateRequest>(produto);
 
@@ -70,16 +82,16 @@ namespace MBolosApi.Controllers
 
             _mapper.Map(produtoUpdateRequest, produto);
             _uof.ProdutoRepository.Update(produto);
-            _uof.Commit();
+            await _uof.CommitAsync();
             return Ok(_mapper.Map<ProdutoDTOUpdateResponse>(produto));
         }
         [HttpPut("{id:int}")]
-        public ActionResult<ProdutoDTO> PutAsync(int id, ProdutoDTO produtoDto)
+        public async Task<ActionResult<ProdutoDTO>> PutAsync(int id, ProdutoDTO produtoDto)
         {
             if (id != produtoDto.Id) return BadRequest("Id não existe!");
             var produto = produtoDto.ToProduto();
             var produtoAtualizado = _uof.ProdutoRepository.Update(produto);
-            _uof.Commit();
+            await _uof.CommitAsync();
             var produtoAtualizadoDTO = produtoAtualizado.ToProdutoDTO();
             return Ok(produtoAtualizadoDTO);
         }

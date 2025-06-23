@@ -11,6 +11,6 @@ namespace MbolosApi.Repositories
         IPedidosRepository PedidosRepository { get; }
         IClienteRepository ClienteRepository { get; }
 
-        void Commit();
+        Task CommitAsync();
     }
 }

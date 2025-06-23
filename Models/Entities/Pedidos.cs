@@ -14,8 +14,8 @@ namespace MBolosApi.Models.Entities
         [Required]
         public int ClienteId { get; set; }
         [JsonIgnore]
-        public Cliente Cliente { get; set; }
-        public List<ItemPedido> Itens { get; set; } = new();
+        public Cliente? Cliente { get; set; }
+        public List<ItemPedido>? Itens { get; set; } = new();
         [Required]
         public DateTime? DataCriacao { get; set; } = DateTime.Now;
         [Required]

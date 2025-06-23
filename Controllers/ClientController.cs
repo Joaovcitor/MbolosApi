@@ -20,22 +20,22 @@ namespace MBolosApi.Controllers
         }
 
         [HttpGet("{id:int}", Name = "GetCliente")]
-        public ActionResult<Cliente> GetById(int id)
+        public async Task<ActionResult<Cliente>> GetById(int id)
         {
-            var cliente = _uof.ClienteRepository.Get(p => p.Id == id);
+            var cliente = await _uof.ClienteRepository.GetAsync(p => p.Id == id);
             if (cliente == null) return BadRequest("Cliente não encontrado!");
             return Ok(cliente);
         }
 
         [HttpPost]
-        public ActionResult<Cliente> Post(Cliente cliente)
+        public async Task<ActionResult<Cliente>> Post(Cliente cliente)
         {
             if (cliente == null) return BadRequest("Dados inválidos");
 
             cliente.SenhaHash = _passwordService.PasswordHash(cliente.SenhaHash);
 
             var clienteCriado = _uof.ClienteRepository.Create(cliente);
-            _uof.Commit();
+            await _uof.CommitAsync();
             return new CreatedAtRouteResult("GetCliente", new { id = cliente.Id }, clienteCriado);
         }
     }

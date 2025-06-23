@@ -18,11 +18,11 @@ namespace MbolosApi.Models.Entities
         [Required]
         public int PedidoId { get; set; }
         [JsonIgnore]
-        public Pedidos Pedido { get; set; }
+        public Pedidos? Pedido { get; set; }
         [Required]
         public int ProdutoId { get; set; }
         [JsonIgnore]
-        public Produto Produto { get; set; }
+        public Produto? Produto { get; set; }
         [Required]
         [Range(1, int.MaxValue)]
         public int Quantidade { get; set; }
