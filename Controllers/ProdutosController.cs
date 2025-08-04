@@ -11,6 +11,7 @@ using MbolosApi.DTOs.Produtos;
 using Microsoft.AspNetCore.JsonPatch;
 using MbolosApi.Pagination;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MBolosApi.Controllers
 {
@@ -27,6 +28,7 @@ namespace MBolosApi.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<ProdutoDTO>>> GetAsync([FromQuery] ProdutosParameters produtosParameters)
         {
             var produtos = await _uof.ProdutoRepository.GetProdutosAsync(produtosParameters);
