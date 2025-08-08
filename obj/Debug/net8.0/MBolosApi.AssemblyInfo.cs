@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MBolosApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dd2937423f3f7b57fc70316ee271eadfd0211414")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+18b3e10a7259e4fe33114d14f03341e216fc9923")]
 [assembly: System.Reflection.AssemblyProductAttribute("MBolosApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MBolosApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
